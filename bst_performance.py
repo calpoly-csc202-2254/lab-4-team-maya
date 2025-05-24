@@ -33,17 +33,17 @@ bst_1M = gen_tree(1000000)
 
 bst_array = [bst_100K, bst_200K, bst_300K, bst_400K, bst_500K, bst_600K, bst_700K, bst_800K, bst_900K, bst_1M]
 
-# returns the average time of a function on a binary tree out of 5 runs
+# returns the average time of a function on a binary tree out of 10 runs
 def avg_time(bst_array : list, func : Callable[BinarySearchTree, any]) -> Union[BinarySearchTree, bool]:
     for tree in bst_array:
         times = []
-        for i in range(5):
+        for i in range(10):
             start = time.perf_counter()
             func(tree, random.random())
             end = time.perf_counter()
             times.append(end - start)
             i += 1
-        print(sum(times)/5)
+        print(sum(times)/10)
     return
 
 print('Average Running Times for insert()')
