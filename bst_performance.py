@@ -20,34 +20,24 @@ def gen_tree(n : int) -> BinarySearchTree:
         bst = insert(bst, num)
     return bst
 
-bst_100K = gen_tree(100000)
-bst_200K = gen_tree(200000)
-bst_300K = gen_tree(300000)
-bst_400K = gen_tree(400000)
-bst_500K = gen_tree(500000)
-bst_600K = gen_tree(600000)
-bst_700K = gen_tree(700000)
-bst_800K = gen_tree(800000)
-bst_900K = gen_tree(900000)
-bst_1M = gen_tree(1000000)
+sizes = [100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000]
 
-bst_array = [bst_100K, bst_200K, bst_300K, bst_400K, bst_500K, bst_600K, bst_700K, bst_800K, bst_900K, bst_1M]
-
-# returns the average time of a function on a binary tree out of 10 runs
-def avg_time(bst_array : list, func : Callable[BinarySearchTree, any]) -> Union[BinarySearchTree, bool]:
-    for tree in bst_array:
+# returns the average time of a function on a binary tree out of 5 runs
+def avg_time(sizes : list, func : Callable[BinarySearchTree, any]) -> Union[BinarySearchTree, bool]:
+    for size in sizes:
         times = []
-        for i in range(10):
+        for i in range(5):
+            bst = gen_tree(size)
             start = time.perf_counter()
             func(tree, random.random())
             end = time.perf_counter()
             times.append(end - start)
             i += 1
-        print(sum(times)/10)
+        print(sum(times)/5)
     return
 
 print('Average Running Times for insert()')
-avg_time(bst_array, insert)
+avg_time(sizes, insert)
 
 print('Average Running Times for lookup()')
-avg_time(bst_array, lookup)
+avg_time(sizes, lookup)
