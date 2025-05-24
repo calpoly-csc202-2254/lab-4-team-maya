@@ -29,7 +29,7 @@ def avg_time(sizes : list, func : Callable[BinarySearchTree, any]) -> Union[Bina
         for i in range(5):
             bst = gen_tree(size)
             start = time.perf_counter()
-            func(tree, random.random())
+            func(bst, random.random())
             end = time.perf_counter()
             times.append(end - start)
             i += 1
